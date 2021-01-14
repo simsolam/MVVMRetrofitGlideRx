@@ -39,7 +39,7 @@ class BookListAdapter : RecyclerView.Adapter<BookListAdapter.MyViewHolder>() {
             tvPublisher.text=data.volumeInfo.publisher
             tvDescription.text=data.volumeInfo.description
 
-            val url=data.volumeInfo?.imageUrl.smallThumbnail
+            val url=data.volumeInfo?.imageLinks.smallThumbnail
             Glide.with(thumbImageView)
                 .load(url)
                 .circleCrop()

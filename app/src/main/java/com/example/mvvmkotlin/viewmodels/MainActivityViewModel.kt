@@ -11,7 +11,10 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 class MainActivityViewModel: ViewModel() {
-    var bookList:MutableLiveData<BookListModel> = MutableLiveData()
+    lateinit var bookList:MutableLiveData<BookListModel>
+    init {
+        bookList= MutableLiveData()
+    }
 
     fun getBookListObserver():MutableLiveData<BookListModel>{
         return bookList
@@ -22,7 +25,7 @@ class MainActivityViewModel: ViewModel() {
         retroInstance.getBookListFromApi(query)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
+            .subscribe(getBookListObserverRx())
 
     }
 
